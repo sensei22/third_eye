@@ -21,6 +21,12 @@ private slots:
     void oneh();
 
 
+    void on_actionEXIT_triggered();
+
+    void on_actionLogin_as_admin_triggered();
+
+    void on_actionAutor_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

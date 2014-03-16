@@ -13,11 +13,20 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    adminlogin.cpp \
+    adminform.cpp \
+    autor.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    adminlogin.h \
+    adminform.h \
+    autor.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    adminlogin.ui \
+    adminform.ui \
+    autor.ui
 
 
 INCLUDEPATH += C:\lol\install\include
