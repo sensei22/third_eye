@@ -7,6 +7,7 @@
 #include <qtimer.h>
 #include <adminlogin.h>
 #include <autor.h>
+#include <windows.h>
 using namespace cv;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -25,21 +26,31 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    QTimer *timer=new QTimer(0);//тут течь
-    timer->start(1000);
-    connect(timer, SIGNAL(timeout()), this, SLOT(oneh()));//имитация сигнала, по окончаниювремени обращаетьса к oneh
+    QGraphicsScene *scene = new QGraphicsScene(ui->graphicsView);//тут течь
+    ui->graphicsView->setAlignment(Qt::AlignLeft|Qt::AlignTop );
+    QPixmap pcc;
+    IplImage* frame=0;
+    CvCapture* capture = cvCreateCameraCapture(-1);
+    ui->graphicsView->setScene(scene);
+    while(1)
+    {
+        cvSaveImage("1.jpg",frame);
+        frame = cvQueryFrame( capture );
+        pcc.load("1.jpg");
+        scene->addPixmap(pcc);
+        ui->graphicsView->show();
+        QEventLoop loop;
+        QTimer::singleShot(1000, &loop, SLOT(quit()));loop.exec();
+        scene->clear();
+    }
+  cvReleaseCapture( &capture );
 }
 
 void MainWindow::oneh()
 {
-    QGraphicsScene *scene = new QGraphicsScene(ui->graphicsView);//тут течь
-    ui->graphicsView->setAlignment(Qt::AlignLeft|Qt::AlignTop );
-    QPixmap pcc;
-    ui->graphicsView->setScene(scene);
-    pcc.load("1.jpg");
-    scene->addPixmap(pcc);
-    cvSaveImage("1.jpg",cvQueryFrame(cvCreateCameraCapture(-1)));
-    ui->graphicsView->show();
+
+
+
 }
 
 void MainWindow::on_actionEXIT_triggered()

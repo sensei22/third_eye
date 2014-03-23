@@ -35,11 +35,14 @@ void adminform::on_pushButton_clicked()
 
 void adminform::on_pushButton_2_clicked()
 {
-    cvSaveImage("temp.jpg",cvQueryFrame(cvCreateCameraCapture(-1)));
+    CvCapture* capture = cvCreateCameraCapture(CV_CAP_ANY);
+    assert( capture );
+    cvSaveImage("temp.jpg",cvQueryFrame(capture));
+    cvSaveImage("temp.jpg",cvQueryFrame(capture));
+    cvReleaseCapture( &capture );
     QPixmap pcc;
     QGraphicsScene *scene = new QGraphicsScene(ui->graphicsView);//тут течь
     ui->graphicsView->setAlignment(Qt::AlignLeft|Qt::AlignTop );
-    //cvReleaseCapture(&capt);
     ui->graphicsView->setScene(scene);
     pcc.load("temp.jpg");
     scene->addPixmap(pcc);
