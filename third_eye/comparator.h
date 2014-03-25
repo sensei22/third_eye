@@ -4,7 +4,6 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/core.hpp>
-int minHessian = 400;
 using namespace cv;
 class comparator
 {
@@ -13,7 +12,7 @@ class comparator
     IplImage* temp;
 public:
     comparator();
-    void setimag();
+    bool setimag();
     bool rez();
 };
 
