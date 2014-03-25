@@ -16,12 +16,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     adminlogin.cpp \
     adminform.cpp \
-    autor.cpp
+    autor.cpp \
+    comparator.cpp
 
 HEADERS  += mainwindow.h \
     adminlogin.h \
     adminform.h \
-    autor.h
+    autor.h \
+    comparator.h
 
 FORMS    += mainwindow.ui \
     adminlogin.ui \

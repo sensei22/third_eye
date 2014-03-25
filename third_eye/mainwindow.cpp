@@ -7,6 +7,7 @@
 #include <qtimer.h>
 #include <adminlogin.h>
 #include <autor.h>
+#include <comparator.h>
 #include <windows.h>
 using namespace cv;
 MainWindow::MainWindow(QWidget *parent) :
@@ -32,6 +33,7 @@ void MainWindow::on_pushButton_clicked()
     IplImage* frame=0;
     CvCapture* capture = cvCreateCameraCapture(-1);
     ui->graphicsView->setScene(scene);
+    comparator h;
     while(1)
     {
         cvSaveImage("1.jpg",frame);
@@ -42,6 +44,7 @@ void MainWindow::on_pushButton_clicked()
         QEventLoop loop;
         QTimer::singleShot(1000, &loop, SLOT(quit()));loop.exec();
         scene->clear();
+        h.rez();
     }
   cvReleaseCapture( &capture );
 }
