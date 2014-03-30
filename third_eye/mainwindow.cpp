@@ -44,11 +44,11 @@ void MainWindow::on_pushButton_clicked()
         QEventLoop loop;
         QTimer::singleShot(1000, &loop, SLOT(quit()));loop.exec();
         scene->clear();
-        if(h.rez()==true)
+       /* if(h.rez()==true)
         {
             break;
         }
-        else;
+        else;*/
     }
   cvReleaseCapture( &capture );
 }
