@@ -10,10 +10,14 @@ class comparator
     IplImage* im;
     IplImage* imm;
     IplImage* temp;
+    int posx;
+    int posy;
 public:
     comparator();
     bool setimag();
     bool rez();
+    int getx();
+    int gety();
 };
 
 #endif // COMPARATOR_H

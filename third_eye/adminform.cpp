@@ -4,6 +4,8 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/core.hpp>
+//#include <opencv/cv.hpp>
+//#include <opencv/cv.h>
 #include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -25,7 +27,7 @@ adminform::~adminform()
 void adminform::on_pushButton_clicked()
 {
     QPixmap pcc;
-    QGraphicsScene *scene = new QGraphicsScene(ui->graphicsView);//тут течь
+    QGraphicsScene *scene = new QGraphicsScene(ui->graphicsView);
     ui->graphicsView->setAlignment(Qt::AlignLeft|Qt::AlignTop );
     ui->graphicsView->setScene(scene);
     pcc.load("curentimg.jpg");
@@ -41,7 +43,7 @@ void adminform::on_pushButton_2_clicked()
     cvSaveImage("temp.jpg",cvQueryFrame(capture));
     cvReleaseCapture( &capture );
     QPixmap pcc;
-    QGraphicsScene *scene = new QGraphicsScene(ui->graphicsView);//тут течь
+    QGraphicsScene *scene = new QGraphicsScene(ui->graphicsView);
     ui->graphicsView->setAlignment(Qt::AlignLeft|Qt::AlignTop );
     ui->graphicsView->setScene(scene);
     pcc.load("temp.jpg");
@@ -57,7 +59,7 @@ void adminform::on_pushButton_5_clicked()
 void adminform::on_pushButton_3_clicked()
 {
     QPixmap pcc;
-    QGraphicsScene *scene = new QGraphicsScene(ui->graphicsView);//тут течь
+    QGraphicsScene *scene = new QGraphicsScene(ui->graphicsView);
     ui->graphicsView->setAlignment(Qt::AlignLeft|Qt::AlignTop );
     QString filew=QFileDialog::getOpenFileName();
     if(filew.size()<=0)
@@ -81,4 +83,25 @@ void adminform::on_pushButton_3_clicked()
 void adminform::on_pushButton_4_clicked()
 {   QFile::remove("curentimg.jpg");
     QFile::copy( "temp.jpg","curentimg.jpg");
+}
+
+void adminform::on_pushButton_6_clicked()
+{
+    int startx=ui->lineEdit->text().toInt();
+    int starty=ui->lineEdit_2->text().toInt();
+    int endy=ui->lineEdit_3->text().toInt();
+    int endx=ui->lineEdit_4->text().toInt();
+    QPixmap pcc;
+    QGraphicsScene *scene = new QGraphicsScene(ui->graphicsView);
+    ui->graphicsView->setAlignment(Qt::AlignLeft|Qt::AlignTop );
+    ui->graphicsView->setScene(scene);
+    pcc.load("curentimg.jpg");
+    scene->addPixmap(pcc);
+    scene->addRect(startx,starty,endx,endy);
+    IplImage* image = 0;
+    IplImage* imagee = 0;
+    image = cvLoadImage("curentimg.jpg");
+    cvSetImageROI(image,cvRect(startx,starty,endx,endy));
+    cvSaveImage("sample.jpg", image);
+    ui->graphicsView->show();
 }

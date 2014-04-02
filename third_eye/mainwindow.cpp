@@ -7,6 +7,7 @@
 #include <qtimer.h>
 #include <adminlogin.h>
 #include <autor.h>
+#include <QMessageBox>
 #include <comparator.h>
 #include <windows.h>
 using namespace cv;
@@ -27,11 +28,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    QGraphicsScene *scene = new QGraphicsScene(ui->graphicsView);//тут течь
+    QGraphicsScene *scene = new QGraphicsScene(ui->graphicsView);
     ui->graphicsView->setAlignment(Qt::AlignLeft|Qt::AlignTop );
     QPixmap pcc;
+    IplImage* exempl=0;
+    exempl=cvLoadImage("sample.jpg",1);
     IplImage* frame=0;
-    CvCapture* capture = cvCreateCameraCapture(-1);
+    CvCapture* capture = cvCreateCameraCapture(0);
     ui->graphicsView->setScene(scene);
     comparator h;
     while(1)
@@ -40,15 +43,18 @@ void MainWindow::on_pushButton_clicked()
         frame = cvQueryFrame( capture );
         pcc.load("1.jpg");
         scene->addPixmap(pcc);
-        ui->graphicsView->show();
         QEventLoop loop;
-        QTimer::singleShot(1000, &loop, SLOT(quit()));loop.exec();
-        scene->clear();
-       /* if(h.rez()==true)
+        QTimer::singleShot(30, &loop, SLOT(quit()));loop.exec();
+        if(h.rez()==true)
         {
-            break;
+           // break;
+            QMessageBox::warning(0,"Warning", "збіг");
+            scene->addRect(h.getx(),h.gety(),exempl->width,exempl->height);
+            ui->graphicsView->show();
         }
-        else;*/
+        else
+        scene->clear();
+        ui->graphicsView->show();
     }
   cvReleaseCapture( &capture );
 }

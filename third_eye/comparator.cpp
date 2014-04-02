@@ -10,12 +10,12 @@ comparator::comparator()
 bool comparator::setimag()
 {
     bool fin;
-    im=cvLoadImage("curentimg.jpg",1);
+    im=cvLoadImage("sample.jpg",1);
     imm=cvLoadImage("1.jpg",1);
 
     if(!im)
     {
-       QMessageBox::warning(0,"Warning", "Початковий фалй ");
+       QMessageBox::warning(0,"Warning", "Початковий файл ");
        fin=false;
     }
     else if(!imm)
@@ -26,7 +26,7 @@ bool comparator::setimag()
     else
     {
         fin=true;
-        temp=cvCreateImage(cvSize(im->width - imm->width + 1,im->height - imm->height + 1),32,1);
+        temp=cvCreateImage(cvSize( imm->width - im->width + 1,imm->height - im->height + 1),32,1);
     }
 
     return fin;
@@ -36,18 +36,29 @@ bool comparator::rez()
     bool rezall=false;
     if(setimag()==true)
     {
-        cvMatchTemplate(im,imm,temp,3);
-        //cvNormalize( temp, temp,1, 0, CV_MINMAX );
         double min,max;
         CvPoint minpos, maxpos;
+        cvMatchTemplate(imm,im,temp,CV_TM_CCOEFF_NORMED);
+        cvNormalize(temp,temp, 1, 0, CV_MINMAX );
         cvMinMaxLoc(temp,&min,&max,&minpos,&maxpos);
-        if(maxpos.x!=minpos.x && minpos.y!=maxpos.y)
+        if(max >= 1)
         {
             rezall=true;
+            posx=maxpos.x;
+            posy=maxpos.y;
         }
+        else
+        rezall=false;
     }
     else
-        rezall=false;
+    rezall=false;
     return rezall;
-    //return false;
+}
+int comparator::getx()
+{
+    return posx;
+}
+int comparator::gety()
+{
+    return posy;
 }
