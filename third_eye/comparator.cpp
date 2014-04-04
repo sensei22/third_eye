@@ -7,35 +7,20 @@ using namespace cv;
 comparator::comparator()
 {
 }
-bool comparator::setimag()
+void comparator::setimag()
 {
-    bool fin;
-    im=cvLoadImage("sample.jpg",1);
-    imm=cvLoadImage("1.jpg",1);
 
-    if(!im)
-    {
-       //QMessageBox::warning(0,"Warning", "Початковий файл ");
-       fin=false;
-    }
-    else if(!imm)
-    {
-        //QMessageBox::warning(0,"Warning", "Останній файл для порівняння");
-        fin=false;
-    }
-    else
-    {
-        fin=true;
-        temp=cvCreateImage(cvSize( imm->width - im->width + 1,imm->height - im->height + 1),32,1);
-    }
+    im=cvLoadImage("sample.jpg");
+    imm=cvLoadImage("1.jpg");
 
-    return fin;
 }
 bool comparator::rez()
 {
+    setimag();
     bool rezall=false;
-    if(setimag()==true)
+    if(imm && im)
     {
+        temp=cvCreateImage(cvSize( imm->width - im->width + 1,imm->height - im->height + 1),32,1);
         double min,max;
         CvPoint minpos, maxpos;
         cvMatchTemplate(imm,im,temp,CV_TM_CCOEFF_NORMED);
@@ -63,15 +48,13 @@ int comparator::gety()
 }
 void comparator::dcomparator()
 {
-    if(setimag())
+    if(im && imm)
     {
     cvReleaseImage(&im);
     cvReleaseImage(&imm);
     cvReleaseImage(&temp);
-    im = NULL;
-    imm = NULL;
-    temp = NULL;
-    //tempImgMask = NULL;
-    //temp;
+    delete im;
+    delete imm;
+    delete temp;
     }
 }

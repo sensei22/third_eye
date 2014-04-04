@@ -49,14 +49,16 @@ void MainWindow::on_pushButton_clicked()
         {
            // break;
             scene->addRect(h.getx(),h.gety(),exempl->width,exempl->height);
-            QMessageBox::warning(0,"Очень секретная информация", "42");
+           // QMessageBox::warning(0,"Очень секретная информация", "42");
+            h.dcomparator();
             ui->graphicsView->show();
             break;
         }
         else
+        h.dcomparator();
         scene->clear();
         ui->graphicsView->show();
-        h.dcomparator();
+
 
     }
   cvReleaseCapture( &capture );

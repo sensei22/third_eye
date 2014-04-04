@@ -14,7 +14,7 @@ class comparator
     int posy;
 public:
     comparator();
-    bool setimag();
+    void setimag();
     bool rez();
     int getx();
     int gety();
