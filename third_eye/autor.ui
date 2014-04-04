@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -55,7 +55,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Гончаров Денис Сергійович  &quot;Конина&quot;</string>
+       <string>Гончаров Денис Сергійович  </string>
       </property>
      </widget>
     </item>

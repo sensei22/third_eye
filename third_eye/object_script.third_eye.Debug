@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\adminlogin.o
+./debug\adminform.o
+./debug\autor.o
+./debug\comparator.o
+./debug\moc_mainwindow.o
+./debug\moc_adminlogin.o
+./debug\moc_adminform.o
+./debug\moc_autor.o
+);

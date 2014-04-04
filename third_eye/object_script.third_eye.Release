@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\adminlogin.o
+./release\adminform.o
+./release\autor.o
+./release\comparator.o
+./release\moc_mainwindow.o
+./release\moc_adminlogin.o
+./release\moc_adminform.o
+./release\moc_autor.o
+);

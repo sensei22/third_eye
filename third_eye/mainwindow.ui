@@ -33,14 +33,14 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>554</x>
       <y>510</y>
-      <width>75</width>
+      <width>101</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>запуск просмотра</string>
     </property>
    </widget>
   </widget>
@@ -55,7 +55,7 @@
    </property>
    <widget class="QMenu" name="menuMenu">
     <property name="title">
-     <string>Menu</string>
+     <string>меню</string>
     </property>
     <addaction name="actionLogin_as_admin"/>
     <addaction name="actionAutor"/>
@@ -74,17 +74,17 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionLogin_as_admin">
    <property name="text">
-    <string>Login as admin</string>
+    <string>ввійти як адмінінстротор</string>
    </property>
   </action>
   <action name="actionAutor">
    <property name="text">
-    <string>autor</string>
+    <string>автори</string>
    </property>
   </action>
   <action name="actionEXIT">
    <property name="text">
-    <string>EXIT</string>
+    <string>вихід</string>
    </property>
   </action>
  </widget>

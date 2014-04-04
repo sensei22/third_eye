@@ -15,12 +15,12 @@ bool comparator::setimag()
 
     if(!im)
     {
-       QMessageBox::warning(0,"Warning", "Початковий файл ");
+       //QMessageBox::warning(0,"Warning", "Початковий файл ");
        fin=false;
     }
     else if(!imm)
     {
-        QMessageBox::warning(0,"Warning", "Останній файл для порівняння");
+        //QMessageBox::warning(0,"Warning", "Останній файл для порівняння");
         fin=false;
     }
     else
@@ -39,9 +39,8 @@ bool comparator::rez()
         double min,max;
         CvPoint minpos, maxpos;
         cvMatchTemplate(imm,im,temp,CV_TM_CCOEFF_NORMED);
-        cvNormalize(temp,temp, 1, 0, CV_MINMAX );
         cvMinMaxLoc(temp,&min,&max,&minpos,&maxpos);
-        if(max >= 1)
+        if(max >= 0.7)
         {
             rezall=true;
             posx=maxpos.x;
@@ -61,4 +60,18 @@ int comparator::getx()
 int comparator::gety()
 {
     return posy;
+}
+void comparator::dcomparator()
+{
+    if(setimag())
+    {
+    cvReleaseImage(&im);
+    cvReleaseImage(&imm);
+    cvReleaseImage(&temp);
+    im = NULL;
+    imm = NULL;
+    temp = NULL;
+    //tempImgMask = NULL;
+    //temp;
+    }
 }

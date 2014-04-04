@@ -18,6 +18,7 @@ public:
     bool rez();
     int getx();
     int gety();
+    void dcomparator();
 };
 
 #endif // COMPARATOR_H
